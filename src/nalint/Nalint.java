@@ -27,6 +27,7 @@ public class Nalint
 	Vector<String> vw;
 	BinTree<Word> tree;
 	HashMap<String, Word> dict;
+	String absPath;
 
 	/**
 	 * @author James Precondition: The program is not initialized.
@@ -193,6 +194,8 @@ public class Nalint
 	{
 		while (true)
 		{
+			absPath = System.getProperty("user.dir");
+			System.out.println(absPath);
 			// Prompt
 			System.out.print("> ");
 
@@ -206,8 +209,6 @@ public class Nalint
 			{
 				System.out.println("DEBUG: cd");
 			}
-			if (exec)
-				Executor.exec("pwd");
 			vw = new Vector<String>(Arrays.asList(cmd.split("\\s+")));
 			/*
 			 * for (int i = 0; i < vw.size(); i++) { // You may want to check
@@ -268,7 +269,7 @@ public class Nalint
 			String command = generate(tree);
 			System.out.println(command);
 			if (exec)
-				Executor.exec(command);
+				Executor.exec(command, absPath);
 		}
 	}
 
