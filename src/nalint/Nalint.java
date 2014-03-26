@@ -284,12 +284,12 @@ public class Nalint
 		{
 			if (tree.getRoot().getPartOfSpeech() == WordType.MISC)
 			{
-				ret += " " + tree.getRoot().getVal();
+				ret += tree.getRoot().getVal();
 			}
 		}
 		else
 		{
-			ret += tree.getRoot().getCmd();
+			ret += tree.getRoot().getCmd() + " ";
 		}
 
 		if (tree.getrSon() != null)
@@ -330,6 +330,12 @@ public class Nalint
 		if (split == null)
 		{
 			idx = getIdxPOS(vw, WordType.VERB);
+			if (idx != -1)
+				split = dict.get(vw.get(idx));
+		}
+		if (split == null)
+		{
+			idx = getIdxPOS(vw, WordType.PREPOSITION);
 			if (idx != -1)
 				split = dict.get(vw.get(idx));
 		}
