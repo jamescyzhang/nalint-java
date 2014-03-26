@@ -19,7 +19,7 @@ public class Executor
 		StringBuffer buffer = new StringBuffer();
 		try
 		{
-			p = runtime.exec(dir, null, new File(dir));
+			p = runtime.exec(str, null, new File(dir));
 			p.waitFor();
 			reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String line = "";
