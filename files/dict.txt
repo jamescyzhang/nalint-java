@@ -28,5 +28,5 @@ a	art	n/a
 the	art	n/a
 go	verb	cd
 to	prep	n/a
-parent	noun	../
-up	prep	../
+parent	noun	 ../
+up	prep	 ../

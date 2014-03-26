@@ -13,11 +13,12 @@ public class Executor
 
 	public static void exec(String command)
 	{
+		String[] str = { "/bin/sh", "-c", command };
 		Process p;
 		StringBuffer buffer = new StringBuffer();
 		try
 		{
-			p = runtime.exec(command);
+			p = runtime.exec(str);
 			p.waitFor();
 			reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String line = "";

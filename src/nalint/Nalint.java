@@ -284,12 +284,12 @@ public class Nalint
 		{
 			if (tree.getRoot().getPartOfSpeech() == WordType.MISC)
 			{
-				ret += tree.getRoot().getVal();
+				ret += " " + tree.getRoot().getVal();
 			}
 		}
 		else
 		{
-			ret += tree.getRoot().getCmd() + " ";
+			ret += tree.getRoot().getCmd();
 		}
 
 		if (tree.getrSon() != null)
