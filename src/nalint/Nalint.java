@@ -347,6 +347,12 @@ public class Nalint
 		}
 		if (split == null)
 		{
+			idx = getIdxPOS(vw, WordType.ARTICLE);
+			if (idx != -1)
+				split = dict.get(vw.get(idx));
+		}
+		if (split == null)
+		{
 			idx = getIdxPOS(vw, WordType.PARTICLE);
 			if (idx != -1)
 				split = dict.get(vw.get(idx));
