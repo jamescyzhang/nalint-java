@@ -192,9 +192,9 @@ public class Nalint
 	 */
 	private void run()
 	{
+		absPath = System.getProperty("user.dir");
 		while (true)
 		{
-			absPath = System.getProperty("user.dir");
 			System.out.println(absPath);
 			// Prompt
 			System.out.print("> ");
@@ -269,7 +269,7 @@ public class Nalint
 			String command = generate(tree);
 			System.out.println(command);
 			if (exec)
-				Executor.exec(command, absPath);
+				absPath = Executor.exec(command, absPath);
 		}
 	}
 
