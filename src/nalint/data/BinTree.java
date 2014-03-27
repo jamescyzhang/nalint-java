@@ -192,5 +192,12 @@ public class BinTree<T>
 	{
 		this.father = father;
 	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException
+	{
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
 
 }

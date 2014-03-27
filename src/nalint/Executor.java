@@ -22,15 +22,17 @@ public class Executor
 			if (dest.endsWith("../"))
 			{
 				dret = dret.substring(0, dret.lastIndexOf("/"));
-			} else
+			}
+			else
+			{
 				dret = dret + "/" + dest;
+			}
 			return dret;
 		}
 		String[] str =
 		{ "/bin/sh", "-c", command };
 		Process p;
 		StringBuffer buffer = new StringBuffer();
-		ProcessBuilder pBuilder = null;
 		try
 		{
 			p = runtime.exec(command, null, new File(dir));
@@ -42,7 +44,8 @@ public class Executor
 			{
 				buffer.append(line + "nullnull\n");
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();

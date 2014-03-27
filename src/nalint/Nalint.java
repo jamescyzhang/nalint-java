@@ -211,8 +211,7 @@ public class Nalint
 			}
 			vw = new Vector<String>(Arrays.asList(cmd.split("\\s+")));
 			/*
-			 * for (int i = 0; i < vw.size(); i++) { // You may want to check
-			 * for a non-word character before blindly if
+			 * for (int i = 0; i < vw.size(); i++) { if
 			 * (vw.get(i).charAt(index)) //vw.set(i,
 			 * vw.get(i).replaceAll("[^\\w]", "")); }
 			 */
@@ -266,11 +265,37 @@ public class Nalint
 			tree = createBinTree(tree, vw);
 			tree.flrTraverse();
 			// CHECKPOINT
+			processPronoun(tree);
+			tree = processPronoun(tree);
 			String command = generate(tree);
 			System.out.println(command);
 			if (exec)
 				absPath = Executor.exec(command, absPath);
 		}
+	}
+
+	private BinTree<Word> processPronoun(BinTree<Word> tree)
+	{
+		if (tree.getRoot().getPartOfSpeech().equals(WordType.PRONOUN) && tree.getRoot().getCmd().equals(""))
+		{
+			BinTree<Word> tv = tree;
+			while (!tv.getRoot().getPartOfSpeech().equals(WordType.VERB))
+			{
+				tv = tv.getFather();
+			}
+			tv = tv.getFather();
+			if (tv.getRoot().getPartOfSpeech().equals(WordType.CONJUNCTION))
+			{
+				tv = tv.getlSon();
+			}
+			tree = tv.getrSon();
+		}
+		else
+		{
+			if (tree.getlSon() != null) tree.setlSon(processPronoun(tree.getlSon()));
+			if (tree.getrSon() != null) tree.setrSon(processPronoun(tree.getrSon()));
+		}
+		return tree;
 	}
 
 	private String generate(BinTree<Word> tree)

@@ -1,5 +1,5 @@
 WORD	POS	LINK
-and	conj	&&
+and	conj	 && 
 but	conj	n/a
 call	verb	n/a
 called	part	n/a
@@ -30,3 +30,6 @@ go	verb	cd
 to	prep	n/a
 parent	noun	 ../
 up	prep	 ../
+show	verb	ls
+this	pron	 ./
+it	pron	n/a
