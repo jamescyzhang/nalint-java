@@ -225,12 +225,12 @@ public class Nalint
 			}
 			for (String str : vw)
 			{
-
 				System.err.println();
 				System.out.print(str + " : ");
 				String ss = str;
 
 				boolean fl = false;
+				int i = 0;
 				do
 				{
 					if (dict.containsKey(ss))
@@ -245,8 +245,10 @@ public class Nalint
 						System.out.println("noget");
 						ss = ss.substring(0, ss.length() - 1);
 					}
+					i++;
 				}
-				while (ss.length() > 0);
+				while (ss.length() > 0 && i < 2);
+
 				if (fl)
 				{
 					if (!dict.containsKey(str))
@@ -268,15 +270,23 @@ public class Nalint
 			processPronoun(tree);
 			tree = processPronoun(tree);
 			String command = generate(tree);
+			while (command.startsWith(" "))
+				command = command.substring(1);
 			System.out.println(command);
 			if (exec)
 				absPath = Executor.exec(command, absPath);
 		}
 	}
 
+	private void special()
+	{
+
+	}
+
 	private BinTree<Word> processPronoun(BinTree<Word> tree)
 	{
-		if (tree.getRoot().getPartOfSpeech().equals(WordType.PRONOUN) && tree.getRoot().getCmd().equals(""))
+		if (tree.getRoot().getPartOfSpeech().equals(WordType.PRONOUN)
+				&& tree.getRoot().getCmd().equals(""))
 		{
 			BinTree<Word> tv = tree;
 			while (!tv.getRoot().getPartOfSpeech().equals(WordType.VERB))
@@ -292,8 +302,10 @@ public class Nalint
 		}
 		else
 		{
-			if (tree.getlSon() != null) tree.setlSon(processPronoun(tree.getlSon()));
-			if (tree.getrSon() != null) tree.setrSon(processPronoun(tree.getrSon()));
+			if (tree.getlSon() != null)
+				tree.setlSon(processPronoun(tree.getlSon()));
+			if (tree.getrSon() != null)
+				tree.setrSon(processPronoun(tree.getrSon()));
 		}
 		return tree;
 	}
@@ -433,6 +445,11 @@ public class Nalint
 		Nalint prog = new Nalint();
 		prog.init();
 		prog.run();
+	}
+
+	public void ref()
+	{
+		
 	}
 
 }
