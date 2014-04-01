@@ -33,3 +33,4 @@ up	prep	 ../
 show	verb	ls
 this	pron	 ./
 it	pron	n/a
+be	verb	n/a
